@@ -93,11 +93,17 @@ export default class Weather extends Vue {
     border-bottom: 1px solid white;
   }
 
-  .vww__daily .vww__day > span {
-    margin-bottom: 10px;
+  .vww__daily {
+    width: calc(100% - 160px);
+
+    .vww__day > span {
+      margin-bottom: 10px;
+    }
   }
 
   .vww__currently {
+    width: 240px;
+
     .vww__temp {
       font-weight: 200;
 
