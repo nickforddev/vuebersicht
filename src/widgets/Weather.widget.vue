@@ -5,13 +5,16 @@
         :api-key="apiKey"
         :latitude="place.latitude.toString()"
         :longitude="place.longitude.toString()"
-        :title="`${place.city}, ${place.state}`"
         :units="units"
         :language="language"
         class="weather-widget"
         text-color="white"
         bar-color="white"
-      />
+      >
+        <template v-slot:title>
+          {{ `${place.city}, ${place.state}` }}
+        </template>
+      </VueWeatherWidget>
     </div>
   </div>
 </template>
@@ -20,7 +23,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
 import VueWeatherWidget from 'vue-weather-widget/src/VueWeatherWidget.vue'
-// import 'vue-weather-widget/dist/css/vue-weather-widget.css'
 import { sleep } from '@/utils'
 
 @Component({
@@ -32,15 +34,15 @@ import { sleep } from '@/utils'
 export default class Weather extends Vue {
   apiKey = process.env.DARKSKY_API_KEY
   loaded = false
-  isUS!: () => boolean
-  language!: () => string
+  isUS!: boolean
+  language!: string
 
   get place() {
     return this.$store.state.place
   }
 
   get units() {
-    return this.isUS() ? 'us' : 'si'
+    return this.isUS ? 'us' : 'si'
   }
 
   async mounted() {

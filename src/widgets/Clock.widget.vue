@@ -22,10 +22,10 @@ import { sleep } from '@/utils'
 export default class Clock extends Vue {
   time: string | null = null
   period: string | null = null
-  isUS!: () => boolean
+  isUS!: boolean
 
   getTime(): string {
-    const isUS = this.isUS()
+    const isUS = this.isUS
     const now = new Date()
     const hours24 = now.getHours()
     const hours12 = hours24 > 12 ? hours24 - 12 : hours24

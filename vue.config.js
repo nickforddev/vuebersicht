@@ -2,6 +2,11 @@
 const webpack = require('webpack')
 
 module.exports = {
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+    },
+  },
   configureWebpack: {
     module: {
       rules: [

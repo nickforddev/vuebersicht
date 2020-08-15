@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { app, protocol, BrowserWindow } from 'electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+// import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import { createWindow } from './electron/utils'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -14,32 +15,32 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } },
 ])
 
-function createWindow() {
-  // Create the browser window.
-  win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      // Use pluginOptions.nodeIntegration, leave this alone
-      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: (process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
-    },
-  })
+// function createWindow() {
+//   // Create the browser window.
+//   win = new BrowserWindow({
+//     width: 800,
+//     height: 600,
+//     webPreferences: {
+//       // Use pluginOptions.nodeIntegration, leave this alone
+//       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+//       nodeIntegration: (process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
+//     },
+//   })
 
-  if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
-    if (!process.env.IS_TEST) win.webContents.openDevTools()
-  } else {
-    createProtocol('app')
-    // Load the index.html when not in development
-    win.loadURL('app://./index.html')
-  }
+//   if (process.env.WEBPACK_DEV_SERVER_URL) {
+//     // Load the url of the dev server if in development mode
+//     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
+//     if (!process.env.IS_TEST) win.webContents.openDevTools()
+//   } else {
+//     createProtocol('app')
+//     // Load the index.html when not in development
+//     win.loadURL('app://./index.html')
+//   }
 
-  win.on('closed', () => {
-    win = null
-  })
-}
+//   win.on('closed', () => {
+//     win = null
+//   })
+// }
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -54,7 +55,7 @@ app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
-    createWindow()
+    win = createWindow()
   }
 })
 
@@ -70,7 +71,8 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  createWindow()
+  win = createWindow()
+  // app.dock.hide()
 })
 
 // Exit cleanly on request from parent process in development mode.
