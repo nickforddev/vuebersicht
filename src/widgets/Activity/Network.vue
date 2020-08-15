@@ -143,7 +143,6 @@ export default class Network extends Vue {
   }
 
   get outChartData() {
-    // console.log(this.valuesOut)
     return {
       labels: new Array(dataPointCount).fill(''),
       datasets: [
