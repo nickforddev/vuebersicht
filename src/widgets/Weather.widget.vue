@@ -70,7 +70,7 @@ export default class Weather extends Vue {
 
 .weather {
   position: absolute;
-  bottom: 18px;
+  bottom: 34px;
   left: 300px;
   width: 620px;
 }
@@ -80,42 +80,37 @@ export default class Weather extends Vue {
 }
 
 ::v-deep {
-  .fe_container {
+  .weather_container {
     font-weight: 400;
   }
 
-  .fe_title {
+  .vww__header {
     margin: 0 14px 0 22px;
+    padding-left: 0;
+    font-size: 1.3em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: left;
     border-bottom: 1px solid white;
-
-    .fe_location {
-      left: 0;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 1.2em;
-      font-weight: 400;
-      letter-spacing: 1px;
-      padding-bottom: 6px;
-    }
   }
 
-  .fe_daily .fe_day .fe_label {
+  .vww__daily .vww__day > span {
     margin-bottom: 10px;
   }
 
-  .fe_currently {
-    .fe_temp {
+  .vww__currently {
+    .vww__temp {
       font-weight: 200;
 
-      .fe_dir {
+      .vww__dir {
         top: 10px;
       }
 
-      .fe-wind {
+      .vww__wind {
         font-size: 12px;
         line-height: 2em;
       }
     }
-    .fe_summary {
+    .vww__summary {
       font-weight: 400;
       width: 100%;
       max-height: 70px;
@@ -124,7 +119,7 @@ export default class Weather extends Vue {
     }
   }
 
-  .fe_alert {
+  .vww__alert {
     top: 0;
     right: 12px;
     left: 0;

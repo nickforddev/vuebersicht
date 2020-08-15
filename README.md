@@ -4,6 +4,14 @@ Inspired by [Üebersicht](https://github.com/felixhageloh/uebersicht), built wit
 
 Add custom widgets to your desktop background, built as Vue single-file components, either in TypeScript or JavaScript.
 
+![Vuebersicht](./screenshots/vs-menu.jpg)
+
+Comes with an Üebersicht-like menu
+
+![Vuebersicht Vue Dev Tools](./screenshots/vs-devtools.jpg)
+
+...and Chromium / Vue Dev Tools
+
 ## Widgets
 
 Widgets are automatically imported from the `./src/widgets` directory, each widget should follow the file naming convention of `<foo>.widget.vue`. You may construct widgets using multiple Vue components, just make sure the root component of the widget has a filename ending in `.widget.vue`, and child components do not.
