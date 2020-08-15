@@ -3,10 +3,11 @@
 </template>
 
 <script>
+// example widget without TypeScript :)
 import { run } from '@/utils'
 
 export default {
-  name: 'Test',
+  name: 'HelloWorld',
   data: () => ({
     value: null,
   }),
