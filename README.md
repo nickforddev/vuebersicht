@@ -1,4 +1,4 @@
-# vuebersicht
+# Vuebersicht
 
 Inspired by [Üebersicht](https://github.com/felixhageloh/uebersicht), built with Vue, Electron, & TypeScript.
 
@@ -18,7 +18,7 @@ Widgets are automatically imported from the `./src/widgets` directory, each widg
 
 ## Limitations
 
-This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Üebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this application in development mode.
+This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Üebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this experimental application in development mode.
 
 ## Project setup
 
