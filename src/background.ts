@@ -1,14 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { app, protocol, BrowserWindow } from 'electron'
+import path from 'path'
+import sane, { Watcher } from 'sane'
+import { app, protocol, powerMonitor, BrowserWindow, Tray } from 'electron'
 // import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
-import { createWindow } from './electron/utils'
+import { createWindow, destroyMenu, createMenu } from './electron/utils'
+// import pkg from '../package.json'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win: BrowserWindow | null
+let appIcon: Tray | null
+let watcher: Watcher | null
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -72,7 +77,32 @@ app.on('ready', async () => {
     }
   }
   win = createWindow()
-  // app.dock.hide()
+  const widgetsFolderPath = path.resolve(__dirname, '../src/widgets')
+  const iconPath = path.resolve(__dirname, '../src/assets/logo.png')
+
+  app.setAboutPanelOptions({
+    applicationName: 'Vuebersicht',
+    // applicationVersion: pkg.version,
+    iconPath,
+  })
+  app.dock.hide()
+
+  appIcon = await createMenu(win)
+
+  // we need to refresh the tray menu when widgets are added or removed
+  watcher = sane(widgetsFolderPath, { glob: ['**/*.widget.vue'] })
+  watcher
+    .on('add', async () => {
+      destroyMenu(appIcon as Tray)
+      appIcon = await createMenu(win as BrowserWindow)
+    })
+    .on('delete', async () => {
+      destroyMenu(appIcon as Tray)
+      appIcon = await createMenu(win as BrowserWindow)
+    })
+  powerMonitor.on('resume', () => {
+    ;(win as BrowserWindow).reload()
+  })
 })
 
 // Exit cleanly on request from parent process in development mode.
