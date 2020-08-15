@@ -66,4 +66,17 @@ yarn lint # or npm run lint
 
 #### Thanks
 
-Major shoutout to @felixhageloh for his amazing work on [Üebersicht](https://github.com/felixhageloh/uebersicht), which is an incredible project that I find both inspiring and humbling. Vuebersicht is in no way meant to be a competitor or a replacement for Üebersicht, if anything it is intended to be a modest tribute to the original, an experimental toy project.
+Major shoutout to [@felixhageloh](https://github.com/felixhageloh) for his amazing work on [Üebersicht](https://github.com/felixhageloh/uebersicht), which is an incredible project that I find both inspiring and humbling. Vuebersicht is in no way meant to be a competitor or a replacement for Üebersicht, if anything it is intended to be a modest tribute to the original, an experimental toy project.
+
+Core libraries used to make this possible:
+
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [Electron](https://github.com/electron/electron)
+- [Vue.js](https://github.com/vuejs/vue)
+- [Webpack](https://github.com/webpack/webpack)
+
+And others used to build some of the widgets:
+
+- [chart.js](https://github.com/chartjs/Chart.js)
+- [v-calendar](https://github.com/nathanreyes/v-calendar)
+- [vue-weather-widget](https://github.com/dipu-bd/vue-weather-widget)
