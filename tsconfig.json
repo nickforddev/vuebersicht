@@ -14,7 +14,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "chart.js",
     ],
     "paths": {
       "@/*": [
