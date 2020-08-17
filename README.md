@@ -31,6 +31,7 @@ import { run } from '@/utils'
 ...
   try {
     const stdout = await run('ls -la')
+    console.log(stdout)
   } catch(e) {
     throw e
   }
@@ -47,7 +48,7 @@ example:
 import { sleep } from '@/utils'
 
 ...
-  await(1000) // wait for 1 sec
+  await sleep(1000) // wait for 1 sec
   foo()
 ```
 
