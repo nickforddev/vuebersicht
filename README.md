@@ -18,7 +18,12 @@ Widgets are automatically imported from the `./src/widgets` directory, each widg
 
 ## Utilities
 
-`run` - Run a shell command and return a promise.
+### run(command)
+  - Decription: Run a shell command.
+  - Parmas: `command: string`
+  - Returns: `Promise<stdout|stderr>`
+
+example:
 
 ```js
 import { run } from '@/utils'
@@ -29,6 +34,21 @@ import { run } from '@/utils'
   } catch(e) {
     throw e
   }
+```
+
+### sleep(milliseconds)
+  - Description: Wait for an aribitrary amount of time
+  - Params: `milliseconds: number`
+  - Returns: `Promise<void>`
+
+example:
+
+```js
+import { sleep } from '@/utils'
+
+...
+  await(1000) // wait for 1 sec
+  foo()
 ```
 
 ## Limitations
