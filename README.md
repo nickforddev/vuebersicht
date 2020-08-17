@@ -20,7 +20,7 @@ Widgets are automatically imported from the `./src/widgets` directory, each widg
 
 ### run(command)
   - Decription: Run a shell command.
-  - Parmas: `command: string`
+  - Params: `command: string`
   - Returns: `Promise<stdout|stderr>`
 
 example:
