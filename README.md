@@ -16,6 +16,42 @@ Comes with an Üebersicht-like menu
 
 Widgets are automatically imported from the `./src/widgets` directory, each widget should follow the file naming convention of `<foo>.widget.vue`. You may construct widgets using multiple Vue components, just make sure the root component of the widget has a filename ending in `.widget.vue`, and child components do not.
 
+## Utilities
+
+### run(command)
+  - Decription: Run a shell command.
+  - Params: `command: string`
+  - Returns: `Promise<stdout|stderr>`
+
+example:
+
+```js
+import { run } from '@/utils'
+
+...
+  try {
+    const stdout = await run('ls -la')
+    console.log(stdout)
+  } catch(e) {
+    throw e
+  }
+```
+
+### sleep(milliseconds)
+  - Description: Wait for an aribitrary amount of time
+  - Params: `milliseconds: number`
+  - Returns: `Promise<void>`
+
+example:
+
+```js
+import { sleep } from '@/utils'
+
+...
+  await sleep(1000) // wait for 1 sec
+  foo()
+```
+
 ## Limitations
 
 This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Üebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this experimental application in development mode.
