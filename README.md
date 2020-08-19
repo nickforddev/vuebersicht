@@ -16,12 +16,16 @@ Comes with an Üebersicht-like menu
 
 Widgets are automatically imported from the `./src/widgets` directory, each widget should follow the file naming convention of `<foo>.widget.vue`. You may construct widgets using multiple Vue components, just make sure the root component of the widget has a filename ending in `.widget.vue`, and child components do not.
 
+- [Vue Single File Components docs](https://vuejs.org/v2/guide/single-file-components.html)
+- [Vue TypeScript Class-Style Component docs](https://class-component.vuejs.org/)
+
 ## Utilities
 
 ### run(command)
-  - Decription: Run a shell command.
-  - Params: `command: string`
-  - Returns: `Promise<stdout|stderr>`
+
+- Decription: Run a shell command.
+- Params: `command: string`
+- Returns: `Promise<stdout|stderr>`
 
 example:
 
@@ -38,9 +42,10 @@ import { run } from '@/utils'
 ```
 
 ### sleep(milliseconds)
-  - Description: Wait for an aribitrary amount of time
-  - Params: `milliseconds: number`
-  - Returns: `Promise<void>`
+
+- Description: Wait for an aribitrary amount of time
+- Params: `milliseconds: number`
+- Returns: `Promise<void>`
 
 example:
 
