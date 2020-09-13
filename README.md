@@ -14,7 +14,7 @@ Comes with an Üebersicht-like menu
 
 ## Widgets
 
-Widgets are automatically imported from the `./src/widgets` directory, each widget should follow the file naming convention of `<foo>.widget.vue`. You may construct widgets using multiple Vue components, just make sure the root component of the widget has a filename ending in `.widget.vue`, and child components do not.
+Widgets are automatically imported from the `./src/widgets` directory, each widget should follow the file naming convention of `<foo>.widget.vue`. You may construct widgets using multiple Vue components, and nest `.widget.vue` files in directories, just make sure the root component of the widget has a filename ending in `.widget.vue`, and child components do not.
 
 - [Vue Single File Components docs](https://vuejs.org/v2/guide/single-file-components.html)
 - [Vue TypeScript Class-Style Component docs](https://class-component.vuejs.org/)
