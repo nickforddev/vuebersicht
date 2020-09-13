@@ -16,12 +16,14 @@ interface Widget {
 interface RootState {
   widgets: Widget[]
   place: Place
+  primaryColor: string
 }
 
 const storeOptions: StoreOptions<RootState> = {
   state: {
     widgets: [],
     place: new Place(),
+    primaryColor: localStorage.getItem('primaryColor') || '#ffffff',
   },
   getters: {
     isUS(state) {
@@ -48,6 +50,12 @@ const storeOptions: StoreOptions<RootState> = {
     },
     updateLocation(state, place: Place) {
       state.place = place
+    },
+    setPrimaryColor(state, color: string) {
+      state.primaryColor = color
+      localStorage.setItem('primaryColor', color)
+      // const root = document.documentElement
+      // root.style.setProperty('--primary-color', color)
     },
   },
   actions: {

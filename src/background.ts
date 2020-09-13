@@ -57,7 +57,7 @@ app.on('ready', async () => {
     // applicationVersion: pkg.version,
     iconPath,
   })
-  app.dock.hide()
+  // app.dock.hide()
 
   appIcon = await createMenu(win)
 

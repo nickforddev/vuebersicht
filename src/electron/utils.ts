@@ -13,37 +13,41 @@ import {
 } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
+let settingsWin: BrowserWindow | null = null
+
 function createSettingsWindow(): BrowserWindow {
-  let win: BrowserWindow | null = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  })
+  settingsWin =
+    settingsWin ||
+    new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    win.loadURL(`${process.env.WEBPACK_DEV_SERVER_URL}/settings`)
-    // if (!process.env.IS_TEST) win.webContents.openDevTools()
+    settingsWin.loadURL(`${process.env.WEBPACK_DEV_SERVER_URL}#/settings`)
+    // if (!process.env.IS_TEST) settingsWin.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.loadURL('app://./settings.html')
+    settingsWin.loadURL('app://./index.html#settings')
   }
 
-  win.on('closed', () => {
-    win = null
+  settingsWin.on('closed', () => {
+    settingsWin = null
   })
-  return win
+  return settingsWin
 }
 
 export function createWindow(): BrowserWindow {
   let win: BrowserWindow | null = new BrowserWindow({
     transparent: true,
     backgroundColor: '#00FFFFFF',
-    // width: 800,
-    // height: 600,
+    width: 800,
+    height: 600,
     frame: false,
     hasShadow: false,
     type: 'desktop',
