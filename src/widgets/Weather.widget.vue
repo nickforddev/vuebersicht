@@ -8,8 +8,8 @@
         :units="units"
         :language="language"
         class="weather-widget"
-        text-color="white"
-        bar-color="white"
+        :text-color="currentColor"
+        :bar-color="currentColor"
       >
         <template v-slot:title>
           {{ `${place.city}, ${place.state}` }}
@@ -90,7 +90,7 @@ export default class Weather extends Vue {
     font-size: 1.3em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: left;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid currentColor;
   }
 
   .vww__daily {

@@ -67,14 +67,14 @@ export default class Calendar extends Vue {
     }
     .vc-highlight {
       background: transparent;
-      border: 1px solid white;
+      border: 1px solid currentColor;
       margin-right: -0.5px;
     }
     .vc-text-white {
-      color: white;
+      color: currentColor;
     }
     .vc-weekday {
-      color: #ffffff;
+      color: currentColor;
     }
     .vc-title-layout {
       justify-content: flex-start;
@@ -82,7 +82,7 @@ export default class Calendar extends Vue {
     .vc-header {
       padding: 10px 3px;
       margin: 0 18px;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid currentColor;
     }
     .vc-title {
       padding: 0;

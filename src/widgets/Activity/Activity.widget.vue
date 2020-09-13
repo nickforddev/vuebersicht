@@ -54,7 +54,7 @@ export default class Activity extends Vue {}
       }
 
       .meta {
-        color: #fff;
+        color: currentColor;
         font-size: 0.6em;
         padding-left: 2px;
         padding-top: 8px;
