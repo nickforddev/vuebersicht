@@ -69,7 +69,7 @@ yarn install # or npm install
 
 ### API keys
 
-Vuebersicht currently ships with a Weather widget that uses 2 APIs, Google Geocoder API (for getting your approximate location), and OpenWeatherMap API (to get local weather data for that location). You'll need to create these API keys and add them to an untracked file called `.env.local`, in the root directory of the project.
+Vuebersicht currently ships with a Weather widget that uses 2 APIs, Google Geocoder API (for getting your approximate location), and OpenWeatherMap API (to get local weather data for that location). You'll need to create these API keys and add them to an untracked file called `.env.local`, in the root directory of the project:
 
 ```js
 GOOGLE_API_KEY = "<google geocoder api key>"
