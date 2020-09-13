@@ -33,6 +33,7 @@ import { sleep } from '@/utils'
   },
 })
 export default class Weather extends Vue {
+  primaryColor!: string
   apiKey = process.env.WEATHER_API_KEY
   loaded = false
   isUS!: boolean
