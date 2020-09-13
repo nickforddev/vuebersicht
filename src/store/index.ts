@@ -54,8 +54,6 @@ const storeOptions: StoreOptions<RootState> = {
     setPrimaryColor(state, color: string) {
       state.primaryColor = color
       localStorage.setItem('primaryColor', color)
-      // const root = document.documentElement
-      // root.style.setProperty('--primary-color', color)
     },
   },
   actions: {

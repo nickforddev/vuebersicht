@@ -13,6 +13,7 @@ import {
 } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
+let win: BrowserWindow | null = null
 let settingsWin: BrowserWindow | null = null
 
 function createSettingsWindow(): BrowserWindow {
@@ -22,6 +23,7 @@ function createSettingsWindow(): BrowserWindow {
       width: 800,
       height: 600,
       webPreferences: {
+        enableRemoteModule: true,
         nodeIntegration: true,
       },
     })
@@ -38,12 +40,15 @@ function createSettingsWindow(): BrowserWindow {
 
   settingsWin.on('closed', () => {
     settingsWin = null
+    if (win) {
+      win.reload()
+    }
   })
   return settingsWin
 }
 
 export function createWindow(): BrowserWindow {
-  let win: BrowserWindow | null = new BrowserWindow({
+  win = new BrowserWindow({
     transparent: true,
     backgroundColor: '#00FFFFFF',
     width: 800,

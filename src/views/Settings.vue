@@ -6,6 +6,10 @@
       <label for="color">Primary color</label>
       <input id="color" v-model="color" type="color" />
     </section>
+
+    <section>
+      <button type="button" @click="save">Save</button>
+    </section>
   </div>
 </template>
 
@@ -30,7 +34,19 @@ export default class Settings extends Vue {
   mounted() {
     this.color = this.primaryColor
   }
+
+  save() {
+    window.close()
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+section {
+  margin-bottom: 20px;
+
+  label {
+    padding-right: 10px;
+  }
+}
+</style>
