@@ -11936,6 +11936,11 @@ vue-property-decorator@^8.4.2:
   dependencies:
     vue-class-component "^7.1.0"
 
+vue-router@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.4.3.tgz#fa93768616ee338aa174f160ac965167fa572ffa"
+  integrity sha512-BADg1mjGWX18Dpmy6bOGzGNnk7B/ZA0RxuA6qedY/YJwirMfKXIDzcccmHbQI0A6k5PzMdMloc0ElHfyOoX35A==
+
 vue-skycons@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/vue-skycons/-/vue-skycons-4.0.2.tgz#90c4663ed42c7524d24ffe696f0071c040757535"
