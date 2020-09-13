@@ -69,17 +69,15 @@ yarn install # or npm install
 
 ### API keys
 
-Vuebersicht currently ships with a Weather widget that uses 2 APIs, Google Geocoder API (for getting your approximate location), and Darksky API (to get local weather data for that location). You'll need to create these API keys and add them to an untracked file called `.env.local`, in the root directory of the project.
+Vuebersicht currently ships with a Weather widget that uses 2 APIs, Google Geocoder API (for getting your approximate location), and OpenWeatherMap API (to get local weather data for that location). You'll need to create these API keys and add them to an untracked file called `.env.local`, in the root directory of the project.
 
 ```js
 GOOGLE_API_KEY = "<google geocoder api key>"
-DARKSKY_API_KEY = "<darksky api key>"
+WEATHER_API_KEY = "<openweathermap api key>"
 ```
 
 - [Create a Google Geocoder API key](https://developers.google.com/maps/documentation/geocoding/get-api-key)
-- ~~[Create a DarkSky API key](https://darksky.net/dev/register)~~
-
-Note: Since Apple's aquisition of DarkSky, they are no longer allowing creation of API keys. An alternative API will most likely be required here.
+- [Create an OpenWeatherMap API key](https://openweathermap.org/appid)
 
 ### Start the application
 

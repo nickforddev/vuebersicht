@@ -22,7 +22,7 @@
     "vue-chartjs": "^3.5.0",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
-    "vue-weather-widget": "^3.0.4",
+    "vue-weather-widget": "^4.2.1",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
