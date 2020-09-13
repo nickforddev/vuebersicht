@@ -19,7 +19,7 @@ export default {
 
 <style scoped lang="scss">
 h1 {
-  color: #fff;
+  color: currentColor;
   font-weight: 200;
   font-size: 3em;
   position: fixed;

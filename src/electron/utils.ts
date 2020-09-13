@@ -13,16 +13,47 @@ import {
 } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
+let win: BrowserWindow | null = null
+let settingsWin: BrowserWindow | null = null
+
+function createSettingsWindow(): BrowserWindow {
+  settingsWin =
+    settingsWin ||
+    new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        enableRemoteModule: true,
+        nodeIntegration: true,
+      },
+    })
+
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    settingsWin.loadURL(`${process.env.WEBPACK_DEV_SERVER_URL}#/settings`)
+    // if (!process.env.IS_TEST) settingsWin.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    // Load the index.html when not in development
+    settingsWin.loadURL('app://./index.html#settings')
+  }
+
+  settingsWin.on('closed', () => {
+    settingsWin = null
+    if (win) {
+      win.reload()
+    }
+  })
+  return settingsWin
+}
+
 export function createWindow(): BrowserWindow {
-  let win: BrowserWindow | null = new BrowserWindow({
+  win = new BrowserWindow({
     transparent: true,
     backgroundColor: '#00FFFFFF',
     width: 800,
     height: 600,
     frame: false,
-    // movable: false,
-    // minimizable: false,
-    // maximizable: false,
     hasShadow: false,
     type: 'desktop',
     webPreferences: {
@@ -117,6 +148,12 @@ export async function createMenu(win: BrowserWindow) {
       label: 'Refresh All Widgets',
       click() {
         win.reload()
+      },
+    },
+    {
+      label: 'Settings',
+      click() {
+        createSettingsWindow()
       },
     },
     {

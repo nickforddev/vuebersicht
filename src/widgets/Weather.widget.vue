@@ -8,8 +8,8 @@
         :units="units"
         :language="language"
         class="weather-widget"
-        text-color="white"
-        bar-color="white"
+        :text-color="primaryColor"
+        :bar-color="primaryColor"
       >
         <template v-slot:title>
           {{ `${place.city}, ${place.state}` }}
@@ -20,18 +20,20 @@
 </template>
 
 <script lang="ts">
+import { mapState, mapGetters } from 'vuex'
 import { Component, Vue } from 'vue-property-decorator'
-import { mapGetters } from 'vuex'
 import VueWeatherWidget from 'vue-weather-widget/src/VueWeatherWidget.vue'
 import { sleep } from '@/utils'
 
 @Component({
   components: { VueWeatherWidget },
   computed: {
+    ...mapState(['primaryColor']),
     ...mapGetters(['language', 'isUS']),
   },
 })
 export default class Weather extends Vue {
+  primaryColor!: string
   apiKey = process.env.WEATHER_API_KEY
   loaded = false
   isUS!: boolean
@@ -90,7 +92,7 @@ export default class Weather extends Vue {
     font-size: 1.3em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: left;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid currentColor;
   }
 
   .vww__daily {

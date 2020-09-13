@@ -61,7 +61,7 @@ export default class Clock extends Vue {
   position: fixed;
   bottom: 20px;
   right: 30px;
-  color: white;
+  color: currentColor;
   vertical-align: text-bottom;
   font-family: 'Helvetica Neue';
   font-weight: 100;
