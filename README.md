@@ -19,6 +19,10 @@ Widgets are automatically imported from the `./src/widgets` directory, each widg
 - [Vue Single File Components docs](https://vuejs.org/v2/guide/single-file-components.html)
 - [Vue TypeScript Class-Style Component docs](https://class-component.vuejs.org/)
 
+## Settings
+
+There is a Settings panel in the Vuebersicht toolbar that allows you to change the primary color used by widgets.
+
 ## Utilities
 
 ### run(command)
