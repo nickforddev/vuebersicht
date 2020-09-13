@@ -1,8 +1,15 @@
 <template>
-  <v-calendar ref="calendar" :attributes="attributes" is-dark is-inline />
+  <v-calendar
+    ref="calendar"
+    :attributes="attributes"
+    :color="primaryColor"
+    :style="{ color: primaryColor }"
+    is-inline
+  />
 </template>
 
 <script lang="ts">
+import { mapState } from 'vuex'
 import { Component, Vue } from 'vue-property-decorator'
 import VCalendar from 'v-calendar'
 import { sleep } from '@/utils'
@@ -21,8 +28,13 @@ interface CalendarOptions {
   dates: Date
 }
 
-@Component
+@Component({
+  computed: {
+    ...mapState(['primaryColor']),
+  },
+})
 export default class Calendar extends Vue {
+  primaryColor!: string
   attributes: CalendarOptions[] | null = null
   date: Date = new Date()
 
@@ -62,6 +74,9 @@ export default class Calendar extends Vue {
   left: 30px;
 
   ::v-deep {
+    * {
+      color: currentColor !important;
+    }
     .vc-arrows-container {
       display: none;
     }

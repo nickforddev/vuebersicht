@@ -1,5 +1,5 @@
 <template>
-  <main v-if="$store.state.widgets.length" :color="primaryColor">
+  <main v-if="$store.state.widgets.length" :style="{ color: primaryColor }">
     <div v-for="(widget, index) in widgets" :key="index">
       <component :is="widget.default" v-if="$store.state.widgets[index].visible" />
     </div>
@@ -17,6 +17,8 @@ import { Component, Vue } from 'vue-property-decorator'
   },
 })
 export default class Widgets extends Vue {
+  primaryColor!: string
+
   get widgets() {
     const widgets = require.context('@/widgets/', true, /.widget.vue$/)
     return widgets.keys().map(relativePath => {
