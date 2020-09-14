@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path'
 import glob from 'glob'
+import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import {
   app,
   shell,
@@ -11,32 +12,32 @@ import {
   nativeImage,
   MenuItemConstructorOptions,
 } from 'electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 let win: BrowserWindow | null = null
 let settingsWin: BrowserWindow | null = null
+
+function loadWindow(browserWindow: BrowserWindow, route = '') {
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    browserWindow.loadURL(`${process.env.WEBPACK_DEV_SERVER_URL}#/${route}`)
+    // if (!process.env.IS_TEST) browserWindow.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    browserWindow.loadURL('app://./index.html#${route}')
+  }
+}
 
 function createSettingsWindow(): BrowserWindow {
   settingsWin =
     settingsWin ||
     new BrowserWindow({
-      width: 800,
-      height: 600,
+      width: 600,
+      height: 400,
       webPreferences: {
-        enableRemoteModule: true,
         nodeIntegration: true,
       },
     })
 
-  if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
-    settingsWin.loadURL(`${process.env.WEBPACK_DEV_SERVER_URL}#/settings`)
-    // if (!process.env.IS_TEST) settingsWin.webContents.openDevTools()
-  } else {
-    createProtocol('app')
-    // Load the index.html when not in development
-    settingsWin.loadURL('app://./index.html#settings')
-  }
+  loadWindow(settingsWin, 'settings')
 
   settingsWin.on('closed', () => {
     settingsWin = null
@@ -57,24 +58,12 @@ export function createWindow(): BrowserWindow {
     hasShadow: false,
     type: 'desktop',
     webPreferences: {
-      // Use pluginOptions.nodeIntegration, leave this alone
-      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      // nodeIntegration: (process.env.ELECTRON_NODE_INTEGRATION as unknown) as boolean,
       nodeIntegration: true,
     },
   })
-  // win.setIgnoreMouseEvents(true)
   win.maximize()
 
-  if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL as string)
-    // if (!process.env.IS_TEST) win.webContents.openDevTools()
-  } else {
-    createProtocol('app')
-    // Load the index.html when not in development
-    win.loadURL('app://./index.html')
-  }
+  loadWindow(win)
 
   win.on('closed', () => {
     win = null
@@ -89,9 +78,7 @@ export function destroyMenu(appIcon: Tray) {
 export async function createMenu(win: BrowserWindow) {
   const widgetsFolderPath = path.resolve(__dirname, '../src/widgets')
   const faviconPath = path.resolve(__dirname, '../src/assets/favicon-16x16.png')
-
   const appIcon = new Tray(nativeImage.createFromPath(faviconPath))
-
   const widgets = glob.sync(`${widgetsFolderPath}/**/*.widget.vue`)
 
   const template = [
