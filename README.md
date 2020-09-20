@@ -24,6 +24,7 @@ Widgets are automatically imported from the `./src/widgets` directory, each widg
 There is a Settings panel in the Vuebersicht toolbar that allows you to change the primary color used by widgets.
 
 ![Vuebersicht Custom Color](./screenshots/vs-custom-color.jpg)
+![Vuebersicht Custom Color](./screenshots/vs-custom-color-2.jpg)
 
 ## Utilities
 
