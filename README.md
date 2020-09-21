@@ -6,7 +6,7 @@ Add custom widgets to your desktop background, built as Vue single-file componen
 
 ![Vuebersicht](./screenshots/vs-menu.jpg)
 
-Comes with an Üebersicht-like menu
+Comes with an Uebersicht-like menu
 
 ![Vuebersicht Vue Dev Tools](./screenshots/vs-devtools.jpg)
 
