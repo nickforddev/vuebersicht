@@ -1,6 +1,6 @@
 # Vuebersicht
 
-Inspired by [Üebersicht](https://github.com/felixhageloh/uebersicht), built with Vue, Electron, & TypeScript.
+Inspired by [Uebersicht](https://github.com/felixhageloh/uebersicht), built with Vue, Electron, & TypeScript.
 
 Add custom widgets to your desktop background, built as Vue single-file components, either in TypeScript or JavaScript.
 
@@ -66,7 +66,7 @@ import { sleep } from '@/utils'
 
 ## Limitations
 
-This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Üebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this experimental application in development mode.
+This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Uebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this experimental application in development mode.
 
 ## Project setup
 
@@ -112,7 +112,7 @@ yarn lint # or npm run lint
 
 #### Thanks
 
-Major shoutout to [@felixhageloh](https://github.com/felixhageloh) for his amazing work on [Üebersicht](https://github.com/felixhageloh/uebersicht), which is an incredible project that I find both inspiring and humbling. Vuebersicht is in no way meant to be a competitor or a replacement for Üebersicht, if anything it is intended to be a modest tribute to the original, an experimental toy project.
+Major shoutout to [@felixhageloh](https://github.com/felixhageloh) for his amazing work on [Uebersicht](https://github.com/felixhageloh/uebersicht), which is an incredible project that I find both inspiring and humbling. Vuebersicht is in no way meant to be a competitor or a replacement for Uebersicht, if anything it is intended to be a modest tribute to the original, an experimental toy project.
 
 Core libraries used to make this possible:
 
