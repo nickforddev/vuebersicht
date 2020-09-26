@@ -22,7 +22,7 @@ function loadWindow(browserWindow: BrowserWindow, route = '') {
     // if (!process.env.IS_TEST) browserWindow.webContents.openDevTools()
   } else {
     createProtocol('app')
-    browserWindow.loadURL('app://./index.html#${route}')
+    browserWindow.loadURL(`app://./index.html#${route}`)
   }
 }
 
@@ -164,4 +164,8 @@ export async function createMenu(win: BrowserWindow) {
   // Call this again for Linux because we modified the context menu
   appIcon.setContextMenu(contextMenu)
   return appIcon
+}
+
+export function sleep(duration: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, duration))
 }

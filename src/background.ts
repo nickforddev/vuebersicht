@@ -3,7 +3,7 @@ import path from 'path'
 import sane, { Watcher } from 'sane'
 import { app, protocol, powerMonitor, BrowserWindow, Tray } from 'electron'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
-import { createWindow, destroyMenu, createMenu } from './electron/utils'
+import { createWindow, destroyMenu, createMenu, sleep } from './electron/utils'
 // import pkg from '../package.json'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -40,6 +40,7 @@ app.on('activate', () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
+  await sleep(200) // hack to fix transparent background in some linux desktop environments
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     try {
