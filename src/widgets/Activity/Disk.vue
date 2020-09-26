@@ -54,7 +54,7 @@ export default class Disk extends Vue {
           label: 'Activity',
           borderColor: 'transparent',
           backgroundColor: [color, 'rgba(255, 255, 255, 0.1)'],
-          data: [used, used - free],
+          data: [used, free],
         },
       ],
     }
