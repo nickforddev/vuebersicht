@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path'
 import sane, { Watcher } from 'sane'
-import { app, protocol, powerMonitor, BrowserWindow, Tray } from 'electron'
+import { app, BrowserWindow, Display, powerMonitor, protocol, screen, Tray} from 'electron'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import { createWindow, destroyMenu, createMenu, sleep } from './electron/utils'
 // import pkg from '../package.json'
@@ -10,7 +10,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win: BrowserWindow | null
+let allWindows: BrowserWindow[] = []
 let appIcon: Tray | null
 let watcher: Watcher | null
 
@@ -31,8 +31,9 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (win === null) {
-    win = createWindow()
+  const internalDisplayWindow = allWindows[0];
+  if (internalDisplayWindow === null) {
+    allWindows[0] = createWindow()
   }
 })
 
@@ -49,7 +50,21 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  win = createWindow()
+
+  const displays = screen.getAllDisplays()
+  const internalDisplays: Display[] = [];
+  const externalDisplays: Display[] = [];
+
+  displays.forEach((display) => {
+    const isExternalDisplay = display.bounds.x !== 0 || display.bounds.y !== 0
+    isExternalDisplay ? externalDisplays.push(display) : internalDisplays.push(display)
+  })
+
+  allWindows = [
+    ...internalDisplays.map(createWindow),
+    ...externalDisplays.map(externalDisplay => createWindow(externalDisplay))
+  ];
+
   const widgetsFolderPath = path.resolve(__dirname, '../src/widgets')
   const iconPath = path.resolve(__dirname, '../src/assets/logo.png')
 
@@ -60,21 +75,22 @@ app.on('ready', async () => {
   })
   app.dock.hide()
 
-  appIcon = await createMenu(win)
+  const internalDisplayWindow = allWindows[0];
+  appIcon = await createMenu(internalDisplayWindow)
 
   // we need to refresh the tray menu when widgets are added or removed
   watcher = sane(widgetsFolderPath, { glob: ['**/*.widget.vue'] })
   watcher
     .on('add', async () => {
       destroyMenu(appIcon as Tray)
-      appIcon = await createMenu(win as BrowserWindow)
+      appIcon = await createMenu(internalDisplayWindow as BrowserWindow)
     })
     .on('delete', async () => {
       destroyMenu(appIcon as Tray)
-      appIcon = await createMenu(win as BrowserWindow)
+      appIcon = await createMenu(internalDisplayWindow as BrowserWindow)
     })
   powerMonitor.on('resume', () => {
-    ;(win as BrowserWindow).reload()
+    ;(internalDisplayWindow as BrowserWindow).reload()
   })
 })
 

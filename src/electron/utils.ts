@@ -4,13 +4,15 @@ import glob from 'glob'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import {
   app,
-  shell,
   BrowserWindow,
+  BrowserWindowConstructorOptions,
+  Display,
   Menu,
   MenuItem,
-  Tray,
-  nativeImage,
   MenuItemConstructorOptions,
+  nativeImage,
+  shell,
+  Tray,
 } from 'electron'
 
 let win: BrowserWindow | null = null
@@ -48,8 +50,8 @@ function createSettingsWindow(): BrowserWindow {
   return settingsWin
 }
 
-export function createWindow(): BrowserWindow {
-  win = new BrowserWindow({
+export function createWindow(externalDisplay?: Display): BrowserWindow {
+  const displayConfig: BrowserWindowConstructorOptions = {
     transparent: true,
     backgroundColor: '#00FFFFFF',
     width: 800,
@@ -60,7 +62,14 @@ export function createWindow(): BrowserWindow {
     webPreferences: {
       nodeIntegration: true,
     },
-  })
+  }
+
+  if (externalDisplay) {
+    displayConfig.x = externalDisplay.bounds.x + 50;
+    displayConfig.y = externalDisplay.bounds.y + 50;
+  }
+
+  win = new BrowserWindow(displayConfig)
   win.maximize()
 
   loadWindow(win)
