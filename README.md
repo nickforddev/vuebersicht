@@ -34,6 +34,8 @@ There is a Settings panel in the Vuebersicht toolbar that allows you to change t
 - Params: `command: string`
 - Returns: `Promise<stdout|stderr>`
 
+Note: It is also possible to use this method to run any kind of shell script, for example, in the [Network Widget](https://github.com/nickforddesign/vuebersicht/blob/master/src/widgets/Activity/Network.vue#L44).
+
 example:
 
 ```js
