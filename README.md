@@ -28,9 +28,9 @@ There is a Settings panel in the Vuebersicht toolbar that allows you to change t
 
 ## Utilities
 
-### run(command)
+### `run(command)`
 
-- Decription: Run a shell command.
+- Decription: Run a shell command asynchronously.
 - Params: `command: string`
 - Returns: `Promise<stdout|stderr>`
 
@@ -43,14 +43,14 @@ import { run } from '@/utils'
   try {
     const stdout = await run('ls -la')
     console.log(stdout)
-  } catch(e) {
-    throw e
+  } catch(stderr) {
+    throw stderr
   }
 ```
 
-### sleep(milliseconds)
+### `sleep(milliseconds)`
 
-- Description: Wait for an aribitrary amount of time
+- Description: Wait for an aribitrary amount of time asynchronously.
 - Params: `milliseconds: number`
 - Returns: `Promise<void>`
 
@@ -67,6 +67,8 @@ import { sleep } from '@/utils'
 ## Limitations
 
 This is still just experimental. Because of the nature of nature of the current build tooling, I haven't yet found a way to enable some important features of the original [Uebersicht](https://github.com/felixhageloh/uebersicht) application, hot-reloading in production builds, for instance. For now, it is recommended to run this experimental application in development mode.
+
+I have yet to really test for OS support (other than MacOS), though I hear that it does work in Ubuntu at least. If you have time to test in your environment please open an issue if it does not run, and I'll look into supporting it.
 
 ## Project setup
 
