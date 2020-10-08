@@ -65,8 +65,8 @@ export function createWindow(externalDisplay?: Display): BrowserWindow {
   }
 
   if (externalDisplay) {
-    displayConfig.x = externalDisplay.bounds.x + 50;
-    displayConfig.y = externalDisplay.bounds.y + 50;
+    displayConfig.x = externalDisplay.bounds.x + 50
+    displayConfig.y = externalDisplay.bounds.y + 50
   }
 
   win = new BrowserWindow(displayConfig)

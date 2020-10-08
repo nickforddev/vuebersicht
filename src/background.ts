@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path'
 import sane, { Watcher } from 'sane'
-import { app, BrowserWindow, Display, powerMonitor, protocol, screen, Tray} from 'electron'
+import { app, BrowserWindow, Display, powerMonitor, protocol, screen, Tray } from 'electron'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import { createWindow, destroyMenu, createMenu, sleep } from './electron/utils'
 // import pkg from '../package.json'
@@ -31,7 +31,7 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  const internalDisplayWindow = allWindows[0];
+  const internalDisplayWindow = allWindows[0]
   if (internalDisplayWindow === null) {
     allWindows[0] = createWindow()
   }
@@ -52,18 +52,22 @@ app.on('ready', async () => {
   }
 
   const displays = screen.getAllDisplays()
-  const internalDisplays: Display[] = [];
-  const externalDisplays: Display[] = [];
+  const internalDisplays: Display[] = []
+  const externalDisplays: Display[] = []
 
-  displays.forEach((display) => {
+  displays.forEach(display => {
     const isExternalDisplay = display.bounds.x !== 0 || display.bounds.y !== 0
-    isExternalDisplay ? externalDisplays.push(display) : internalDisplays.push(display)
+    if (isExternalDisplay) {
+      externalDisplays.push(display)
+    } else {
+      internalDisplays.push(display)
+    }
   })
 
   allWindows = [
     ...internalDisplays.map(createWindow),
-    ...externalDisplays.map(externalDisplay => createWindow(externalDisplay))
-  ];
+    ...externalDisplays.map(externalDisplay => createWindow(externalDisplay)),
+  ]
 
   const widgetsFolderPath = path.resolve(__dirname, '../src/widgets')
   const iconPath = path.resolve(__dirname, '../src/assets/logo.png')
@@ -75,7 +79,7 @@ app.on('ready', async () => {
   })
   app.dock.hide()
 
-  const internalDisplayWindow = allWindows[0];
+  const internalDisplayWindow = allWindows[0]
   appIcon = await createMenu(internalDisplayWindow)
 
   // we need to refresh the tray menu when widgets are added or removed
